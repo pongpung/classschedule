@@ -2,226 +2,182 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interactive Class Schedule</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📘 Class Routine & Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
-      color: #333;
       margin: 0;
-      padding: 2rem;
+      font-family: 'Inter', sans-serif;
+      background: #f7f9fc;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
     }
     h1 {
       text-align: center;
-      color: #2b6777;
+      color: #2a4d9b;
+      margin-bottom: 20px;
     }
-    .schedule {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .day {
+    .day-card, .event-section {
       background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 1rem 1.5rem;
-      transition: transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
     }
-    .day:hover {
-      transform: translateY(-5px);
+    h2 {
+      color: #1d387a;
+      margin-bottom: 12px;
     }
-    .day h2 {
-      color: #52ab98;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 0.5rem;
+    .class-item, .event-item {
+      background: #edf1fb;
+      padding: 10px 15px;
+      border-radius: 12px;
+      margin: 8px 0;
+      font-size: 0.95rem;
     }
-    .class-time {
-      margin: 1rem 0;
-      padding: 0.5rem 0.75rem;
-      border-left: 4px solid #2b6777;
-      background: #f9f9f9;
-      border-radius: 0.5rem;
-      position: relative;
-    }
-    .class-time strong {
+    .class-item span, .event-item span {
+      font-weight: 600;
       display: block;
-      color: #2b6777;
+      color: #2a4d9b;
     }
-    .edit-btn, .alarm-btn, .exam-btn {
-      margin-top: 5px;
-      background-color: #52ab98;
+    input {
+      padding: 8px;
+      margin: 6px 4px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 8px 14px;
+      background-color: #2a4d9b;
       color: white;
       border: none;
-      padding: 4px 8px;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-right: 4px;
-    }
-    .edit-input {
-      width: 100%;
-      margin-top: 0.5rem;
-    }
-    .exam-topic {
-      font-size: 0.9rem;
-      color: #c0392b;
-      margin-top: 0.3rem;
-    }
-    .login-section {
-      text-align: center;
-    }
-    .logged-in {
-      display: none;
-    }
-    .login-btn {
-      background-color: #2b6777;
-      color: white;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
-  <h1>📘 My Weekly Class Schedule</h1>
-  
-  <div class="login-section" id="login-section">
-    <button class="login-btn" onclick="login()">Login as Editor</button>
+  <div class="container">
+    <h1>📘 My Class Routine & Dashboard</h1>
+
+    <!-- Routine -->
+    <div class="day-card"><h2>Sunday</h2>
+      <div class="class-item"><span>10:15 AM - 11:45 AM</span>Principles of Accounting (ACC-1101), FBS Tower-CR 1201</div>
+      <div class="class-item"><span>02:00 PM - 03:30 PM</span>Business Mathematics (ALD-1101), FBS Tower-CR 1102</div>
+    </div>
+    <div class="day-card"><h2>Tuesday</h2>
+      <div class="class-item"><span>08:30 AM - 10:00 AM</span>Professional Ethics (GED-1103), FBS Tower-CR 1101</div>
+      <div class="class-item"><span>10:15 AM - 11:45 AM</span>Intro to Business (GED-1101), FBS Tower-CR 1102</div>
+      <div class="class-item"><span>2:00 PM - 03:30 PM</span>Bangladesh Studies (GED-1102), FBS Tower-CR 1102</div>
+      <div class="class-item"><span>03:45 PM - 05:15 PM</span>Business Math (ALD-1101), FBS Tower-CR 1201</div>
+    </div>
+    <div class="day-card"><h2>Wednesday</h2>
+      <div class="class-item"><span>10:15 AM - 11:45 AM</span>Principles of Accounting (ACC-1101), FBS Tower-CR 1203</div>
+      <div class="class-item"><span>02:00 PM - 03:30 PM</span>Intro to Business (GED-1101), FBS Tower-CR 1201</div>
+    </div>
+    <div class="day-card"><h2>Thursday</h2>
+      <div class="class-item"><span>10:15 AM - 11:45 AM</span>Ethics & Psychology (GED-1103), FBS Tower-CR 1102</div>
+      <div class="class-item"><span>02:00 PM - 03:30 PM</span>Bangladesh Studies (GED-1102), FBS Tower-CR 1101</div>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="event-section">
+      <h2>📅 Upcoming Exams & Assignments</h2>
+      <input type="text" id="eventTitle" placeholder="Exam or Assignment Title">
+      <input type="date" id="eventDate">
+      <input type="password" id="adminKey" placeholder="Admin Secret Key">
+      <button onclick="addEvent()">Add Event</button>
+      <div id="eventList"></div>
+    </div>
   </div>
 
-  <div class="schedule logged-in" id="schedule"></div>
-
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
   <script>
+    // ✅ Your Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyAwGmVEAJO49iLkfASobN4aqhXBqSP-BBs",
       authDomain: "classschedulerapp-af122.firebaseapp.com",
       databaseURL: "https://classschedulerapp-af122-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "classschedulerapp-af122",
-      storageBucket: "classschedulerapp-af122.firebasestorage.app",
+      storageBucket: "classschedulerapp-af122.appspot.com",
       messagingSenderId: "781740188469",
       appId: "1:781740188469:web:92379d80d3b78a2c80227c"
     };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
+    const ADMIN_SECRET = "letmein"; // change this to your own secret
 
-    let isEditorLoggedIn = false;
-    const editorEmail = "editor@example.com";  // Set this to the email of the editor
+    function addEvent() {
+      const title = document.getElementById("eventTitle").value;
+      const date = document.getElementById("eventDate").value;
+      const adminKey = document.getElementById("adminKey").value;
 
-    // Check if the editor is logged in
-    auth.onAuthStateChanged(user => {
-      if (user && user.email === editorEmail) {
-        isEditorLoggedIn = true;
-        document.getElementById('login-section').style.display = 'none';
-        document.getElementById('schedule').classList.remove('logged-in');
-        fetchScheduleFromFirebase();
-      } else {
-        document.getElementById('login-section').style.display = 'block';
-        document.getElementById('schedule').classList.add('logged-in');
-        fetchScheduleFromFirebase();
+      if (adminKey !== ADMIN_SECRET) {
+        alert("Unauthorized: Incorrect admin key");
+        return;
       }
-    });
+      if (!title || !date) {
+        alert("Please fill in all fields");
+        return;
+      }
 
-    // Login function
-    function login() {
-      auth.signInWithEmailAndPassword(editorEmail, "editorPassword")  // Replace with the editor's email and password
-        .then(() => {
-          console.log("Logged in successfully");
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    }
+      const id = Date.now();
+      const data = {
+        title,
+        date,
+        timestamp: new Date(date).getTime()
+      };
+      db.ref("events/" + id).set(data);
 
-    // Fetch the schedule from Firebase
-    function fetchScheduleFromFirebase() {
-      const scheduleRef = database.ref('schedule');
-      scheduleRef.once('value', snapshot => {
-        const data = snapshot.val();
-        renderSchedule(data);
+      new Notification("📌 New Event Added", {
+        body: `${title} on ${new Date(date).toDateString()}`
       });
     }
 
-    // Render the schedule
-    function renderSchedule(data) {
-      const scheduleDiv = document.getElementById("schedule");
-      scheduleDiv.innerHTML = ''; // Clear existing schedule
-      Object.keys(data).forEach(day => {
-        const dayDiv = document.createElement("div");
-        dayDiv.className = "day";
+    function loadEvents() {
+      const container = document.getElementById("eventList");
+      container.innerHTML = "";
+      const now = Date.now();
 
-        const title = document.createElement("h2");
-        title.innerText = day;
-        dayDiv.appendChild(title);
+      db.ref("events").on("value", snapshot => {
+        const events = snapshot.val();
+        container.innerHTML = "";
 
-        data[day].forEach(cls => {
-          const clsDiv = document.createElement("div");
-          clsDiv.className = "class-time";
+        for (let key in events) {
+          const { title, date, timestamp } = events[key];
 
-          const time = document.createElement("strong");
-          time.innerText = cls.time;
-          clsDiv.appendChild(time);
-
-          const details = document.createElement("div");
-          details.innerText = `${cls.subject} - ${cls.room}`;
-          clsDiv.appendChild(details);
-
-          if (cls.exam) {
-            const examInfo = document.createElement("div");
-            examInfo.className = "exam-topic";
-            examInfo.innerText = `📌 Exam Topic: ${cls.topic}`;
-            clsDiv.appendChild(examInfo);
+          if (timestamp < now) {
+            // auto-delete old events
+            db.ref("events/" + key).remove();
+            continue;
           }
 
-          if (isEditorLoggedIn) {
-            const editBtn = document.createElement("button");
-            editBtn.innerText = "Edit";
-            editBtn.className = "edit-btn";
-            editBtn.onclick = () => {
-              const newSubject = prompt("Edit subject:", cls.subject);
-              if (newSubject) {
-                cls.subject = newSubject;
-                updateScheduleInFirebase(data);
-              }
-            };
-            clsDiv.appendChild(editBtn);
-
-            const alarmBtn = document.createElement("button");
-            alarmBtn.innerText = "⏰ Set Alarm";
-            alarmBtn.className = "alarm-btn";
-            alarmBtn.onclick = () => alert(`Alarm set for ${cls.time} - ${cls.subject}`);
-            clsDiv.appendChild(alarmBtn);
-
-            const examBtn = document.createElement("button");
-            examBtn.innerText = "Edit Exam Date/Topic";
-            examBtn.className = "exam-btn";
-            examBtn.onclick = () => {
-              const newTopic = prompt("Edit Exam Topic:", cls.topic);
-              if (newTopic) {
-                cls.topic = newTopic;
-                updateScheduleInFirebase(data);
-              }
-            };
-            clsDiv.appendChild(examBtn);
-          }
-
-          dayDiv.appendChild(clsDiv);
-        });
-
-        scheduleDiv.appendChild(dayDiv);
+          const div = document.createElement("div");
+          div.className = "event-item";
+          div.innerHTML = `<span>${new Date(date).toDateString()}</span>${title}`;
+          container.appendChild(div);
+        }
       });
     }
 
-    // Update the schedule in Firebase
-    function updateScheduleInFirebase(updatedSchedule) {
-      database.ref('schedule').set(updatedSchedule);
+    // Request browser notification permission
+    if ('Notification' in window && Notification.permission !== "granted") {
+      Notification.requestPermission();
     }
+
+    // Start
+    loadEvents();
   </script>
 </body>
 </html>
